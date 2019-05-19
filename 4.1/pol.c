@@ -93,15 +93,14 @@ int main()
                     ForVetki--;
                     vetki--;
                 } else {
-                    printf(". ");
+                    printf("* ");
                     freekl++;
                 }
                 break;
 
             case 3:
-                if ((ForList != 0) && (list != 0)) {
+                if (list != 0) {
                     printf("* ");
-                    ForList--;
                     list--;
                 } else {
                     printf(". ");
@@ -127,7 +126,7 @@ int main()
                     murv--;
                     y--;
                 } else {
-                    printf(". ");
+                    printf("* ");
                     freekl++;
                 }
                 break;
@@ -144,7 +143,6 @@ int main()
         printf("\t \n");
         ForKamni = 2;
         ForVetki = 2;
-        ForList = 7;
         y = 1;
     }
 }
