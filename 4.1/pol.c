@@ -33,7 +33,6 @@ int main()
     int kamni = 10; /*камушки*/
     int ForVetki = 3;
     int vetki = 40; /*ветки*/
-    int ForList = 5;
     int list = 80; /*листики*/
     int ev = 2;    /*Злые*/
     int murv = 3;
@@ -71,17 +70,23 @@ int main()
                 if ((ForKamni != 0) && (kamni != 0) && (table[i][j] != table[i + 1][j + 1])
                     && (table[i][j] != table[i][j + 1])
                     && (table[i][j] != table[i + 1][j])) {
-                    printf("O ");
+                    printf("%s%sm", CSI, colors[2]);
+                    printf ("O ");
+                    printf("%s0m", CSI);
                     ForKamni--;
                     kamni--;
                 } else {
-                    printf(". ");
+                    printf("%s%sm", CSI, colors[1]);
+                    printf (". ");
+                    printf("%s0m", CSI);
                     freekl++;
                 }
                 break;
 
             case 1: {
-                printf(". ");
+                printf("%s%sm", CSI, colors[1]);
+                printf (". ");
+                printf("%s0m", CSI);
                 freekl++;
             } break;
 
@@ -89,32 +94,44 @@ int main()
                 if (((ForVetki != 0) && (vetki != 0)) && (table[i][j] != table[i][j + 1])
                     && (table[i][j] != table[i + 1][j])
                     && (table[i][j] != table[i][j + 2])) {
-                    printf("| ");
+                    printf("%s%sm", CSI, colors[7]);
+                    printf ("| ");
+                    printf("%s0m", CSI);
                     ForVetki--;
                     vetki--;
                 } else {
-                    printf("* ");
+                    printf("%s%sm", CSI, colors[5]);
+                    printf ("* ");
+                    printf("%s0m", CSI);
                     freekl++;
                 }
                 break;
 
             case 3:
                 if (list != 0) {
-                    printf("* ");
+                    printf("%s%sm", CSI, colors[5]);
+                    printf ("* ");
+                    printf("%s0m", CSI);
                     list--;
                 } else {
-                    printf(". ");
+                    printf("%s%sm", CSI, colors[1]);
+                    printf (". ");
+                    printf("%s0m", CSI);
                     freekl++;
                 }
                 break;
 
             case 4:
                 if ((ev != 0) && (i < 5)) {
-                    printf("x ");
+                    printf("%s%sm", CSI, colors[3]);
+                    printf ("x ");
+                    printf("%s0m", CSI);
                     ev--;
 
                 } else {
-                    printf(". ");
+                     printf("%s%sm", CSI, colors[1]);
+                     printf (". ");
+                     printf("%s0m", CSI);
                     freekl++;
                 }
                 break;
@@ -122,11 +139,16 @@ int main()
             case 5:
                 if ((murv != 0) && (i > 10) && (table[i][j] != table[i][j + 1])
                     && (y != 0)) {
-                    printf("m ");
+                    printf("%s%sm", CSI, colors[11]);
+                    printf ("m ");
+                    printf("%s0m", CSI);
                     murv--;
                     y--;
                 } else {
-                    printf("* ");
+                    printf("%s%sm", CSI, colors[5]);
+                    printf ("* ");
+                    printf("%s0m", CSI);
+                    
                     freekl++;
                 }
                 break;
@@ -136,7 +158,9 @@ int main()
                 break;
 
             case 9:
-                printf("Q ");
+                    printf("%s%sm", CSI, colors[6]);
+                    printf ("Q ");
+                    printf("%s0m", CSI);
                 break;
             }
         }
