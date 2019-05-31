@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include "jiznn.h"
 #define CSI "\x1B\x5B"
 
 char colors[][5] = {
@@ -26,7 +27,13 @@ char colors[][5] = {
 
 int main()
 {
+    struct murv mur[20];
+    struct murv ev_mur[20];
     int i, j;
+    mur[0].klass = 9;//êëàññ êîðîëåâû 9 , à ñàìà îíà ñ÷èòàåòñÿ 0-ûì ìóðàâüžì
+    mur[0].energy = 10000;
+    ev_mur[0].klass = 4;//êëàññ êîðîëåâû 9 , à ñàìà îíà ñ÷èòàåòñÿ 0-ûì ìóðàâüžì
+    ev_mur[0].energy = 10000;
     int ForKamni = 3;
     int kamni = 10; /*камушки*/
     int ForVetki = 3;
@@ -36,29 +43,19 @@ int main()
     int murv = 3;
     int y = 1;  /*Рабочие*/
     int freekl; /*количество свободных клеток*/
-
+    int index = 0;
     int table[16][16];
 
     printf("%s%sm", CSI, colors[11]);
 
     printf("  ~Welcome to murvs life~ \n");
     printf("%s0m", CSI); // return normal text color
-
-    for (i = 0; i < 16; i++) {
+	for (i = 0; i < 16; i++) {
         for (j = 0; j < 16; j++) {
-            table[i][j] = rand() % 6;
+            table[i][j] = rand() % 4;
 
-            table[14][14] = 9;
-            table[14][15] = 15;
-            table[14][13] = 15;
-            table[13][14] = 15;
-            table[13][15] = 15;
-            table[13][13] = 15;
-            table[15][14] = 15;
-            table[15][15] = 15;
-            table[15][13] = 15;
-
-            switch (table[i][j]) {
+    
+switch (table[i][j]) {
             case 0:
                 if ((ForKamni != 0) && (kamni != 0)
                     && (table[i][j] != table[i + 1][j + 1])
@@ -70,6 +67,7 @@ int main()
                     ForKamni--;
                     kamni--;
                 } else {
+                    table[i][j] = 1;
                     printf("%s%sm", CSI, colors[1]);
                     printf(". ");
                     table[i][j] = 1;
@@ -135,7 +133,7 @@ int main()
                 }
                 break;
 
-            case 5:
+            case 8:
                 if ((murv != 0) && (i > 10) && (table[i][j] != table[i][j + 1])
                     && (y != 0)) {
                     printf("%s%sm", CSI, colors[11]);
@@ -153,10 +151,6 @@ int main()
                 }
                 break;
 
-            case 15:
-                printf("# ");
-                break;
-
             case 9:
                 printf("%s%sm", CSI, colors[6]);
                 printf("Q ");
@@ -169,6 +163,93 @@ int main()
         ForVetki = 2;
         y = 1;
     }
+ table[15][15] = mur[0].klass;
+    table[15][14] = 2;
+    table[15][13] = 2;
+table[4][8] = ev_mur[0].klass;
+while(1){
+	system("clear");
+    for (i = 0; i < 16; i++) {
+        for (j = 0; j < 16; j++) {
+            
+		
+            switch(table[i][j]){
+			   case 0:
+                
+                    printf("%s%sm", CSI, colors[2]);
+                    printf("O ");
+                    printf("%s0m", CSI);
+                    
+                
+                break;
+
+            case 1: 
+                printf("%s%sm", CSI, colors[1]);
+                printf(". ");
+                printf("%s0m", CSI);
+                
+             break;
+
+            case 2:
+                
+                   printf("%s%sm", CSI, colors[7]);
+                    printf("| ");
+                    printf("%s0m", CSI);
+                    
+               
+                
+                break;
+
+            case 3:
+               
+                    printf("%s%sm", CSI, colors[5]);
+                    printf("* ");
+                    printf("%s0m", CSI);
+                    list--;
+               
+                break;
+
+            case 4:
+               
+                    printf("%s%sm", CSI, colors[3]);
+                    printf("x ");
+                    printf("%s0m", CSI);
+                  
+                
+                
+                break;
+
+            case 8:
+               
+                    printf("%s%sm", CSI, colors[11]);
+                    printf("m ");
+                    printf("%s0m", CSI);
+                  
+                
+                break;
+
+            case 9:
+                printf("%s%sm", CSI, colors[6]);
+                printf("Q ");
+                printf("%s0m", CSI);
+                break;
+	    
+	}
+       
+    }
+	printf("\t \n");
 }
+	for(int i = 0; i < 16; i++){
+		for(int j = 0; j < 16; j++){
+			hod(table,i,j,&index,mur);
+		}
+	}
+	char n;
+	scanf("%c",&n);
+	if(n == 'q') return 0;
+}
+}
+
+
 
 
