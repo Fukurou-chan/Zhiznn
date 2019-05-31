@@ -8,3 +8,9 @@ void napoln(int table[16][16]){
 	}
     }
 }
+
+void myhod(int* a, int* b) {
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
