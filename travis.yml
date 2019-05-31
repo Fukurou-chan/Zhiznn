@@ -1,0 +1,8 @@
+os: linux
+language: c
+dist: xenial
+script:
+  - git ls-files src/ | xargs clang-format  && git diff --exit-code
+  - make && make test && bin/jizn-test 
+compiler:
+- gcc
