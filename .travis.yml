@@ -1,6 +1,6 @@
 language: c
 script:
-  - make && make test && jizn-test
+  - make && make test && bin/jizn-test
   - git ls-files src/ | xargs clang-format && git diff --exit-code
 compiler: gcc
 dist: xenial
