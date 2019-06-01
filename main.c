@@ -118,7 +118,19 @@ int	main(){
 					int i_l = i - r_l;
 					int j_l = j - r_l;
 					//4 raza napisatt for
-					for (int c_l = 0, i_l; c_l < l_r_l - 1
+					for (int c_l = 0, i_l; c_l < l_r_l
+						&& auf(i_l, j_l, i, j); c_l++, j_l++) {
+							sum[c_l] += table[i_l][j_l];
+						}
+                    for (int c_l = 0, i_l; c_l < l_r_l - 1
+						&& auf(i_l, j_l, i, j); c_l++, i_l--) {
+							sum[c_l] += table[i_l][j_l];
+						}
+                    for (int c_l = 0, i_l; c_l < l_r_l - 1
+						&& auf(i_l, j_l, i, j); c_l++, j_l--) {
+							sum[c_l] += table[i_l][j_l];
+						}
+                    for (int c_l = 0, i_l; c_l < l_r_l - 2
 						&& auf(i_l, j_l, i, j); c_l++, i_l++) {
 							sum[c_l] += table[i_l][j_l];
 						}
